@@ -13,7 +13,7 @@ import java.util.List;
 @Slf4j
 @Component
 public class ChatHandler extends TextWebSocketHandler {
-    private List<WebSocketSession> sessions = new ArrayList<>();
+    private static List<WebSocketSession> sessions = new ArrayList<>();
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
