@@ -1,10 +1,7 @@
 package org.project.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
@@ -15,5 +12,10 @@ public class ChatHistory extends BaseEntity {
     private Long seq;
     private String nickNm;
     private String message;
+
+    @ToString.Exclude
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="roomNo")
+    private ChatRoom room;
 
 }
