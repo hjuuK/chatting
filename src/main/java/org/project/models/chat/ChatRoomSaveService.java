@@ -25,6 +25,6 @@ public class ChatRoomSaveService {
         room.setMax(form.max());
         repository.saveAndFlush(room);
 
-        form.roomNo(room.getRoomNo());
+        return room;
     }
 }
