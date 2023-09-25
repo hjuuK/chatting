@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,7 +20,7 @@ public class ApiChatController {
     private final ChatRoomSaveService chatRoomSaveService;
 
     @PostMapping("/room")
-    public ResponseEntity<JSONData<ChatRoom>> registerRoom(@Valid ChatRoomForm form, Errors errors) {
+    public ResponseEntity<JSONData<ChatRoom>> registerRoom(@Valid @RequestBody ChatRoomForm form, Errors errors) {
         ChatRoom room = chatRoomSaveService.save(form);
         HttpStatus status = HttpStatus.CREATED;
 
