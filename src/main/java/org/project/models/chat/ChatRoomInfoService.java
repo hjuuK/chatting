@@ -14,8 +14,7 @@ import static org.springframework.data.domain.Sort.Order.desc;
 @RequiredArgsConstructor
 public class ChatRoomInfoService {
     private final ChatRoomRepository roomRepository;
-
-    public List<ChatRoom> getAll() {
+    public List<ChatRoom> getList() {
         List<ChatRoom> rooms = roomRepository.findAll(Sort.by(desc("createdAt")));
 
         return rooms;

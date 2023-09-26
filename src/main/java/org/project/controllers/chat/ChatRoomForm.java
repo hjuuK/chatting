@@ -6,6 +6,6 @@ import lombok.Builder;
 @Builder
 public record ChatRoomForm( // getter, 생성자, toString, equalsAndHashCode 자동 추가
         Long roomNo,
-        @NotBlank
+        @NotBlank(message="채팅방 이름을 입력하세요.")
         String roomNm,
         int max) {}
