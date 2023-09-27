@@ -1,14 +1,15 @@
-import StyledButton from "./components/StyledButton";
+import './common.sass';
 
 const App = () => {
-  const handleClick = () => {
-    alert("확인!");
-  };
+  
 
   return (
-    <>
-      <StyledButton onClick={handleClick}>확인</StyledButton>
-    </>
+    <div className="container">
+      <button className='red'>클릭</button>
+      <button className='orange'>클릭</button>
+      <button className='green'>클릭</button>
+      <button className='blue'>클릭</button>
+    </div>
   );
 };
 
