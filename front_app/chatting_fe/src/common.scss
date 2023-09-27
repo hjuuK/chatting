@@ -1,0 +1,34 @@
+$red: red;
+$orange: orange;
+$green: green;
+$blue: blue;
+
+@mixin sizeBox($size) {
+    $calculated: 50px * $size;
+    height: $calculated;
+}
+
+.container {
+    button {
+        width: 100%;
+        &.red {
+            background: $red;
+            @include sizeBox(1);
+        }
+
+        &.orange {
+            background: $orange;
+            @include sizeBox(2);
+        }
+
+        &.green {
+            background: $green;
+            @include sizeBox(3);
+        }
+
+        &.blue {
+            background: $blue;
+            @include sizeBox(4);
+        }
+    }
+}

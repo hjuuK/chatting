@@ -1,0 +1,21 @@
+.container {
+    margin: 100px;
+
+    button {
+        &.red {
+            background: red;
+        }
+
+        &.blue {
+            background: blue;
+        }
+    }
+}
+
+:global .orange {
+    background: orange;
+}
+
+:global .green {
+    background: green;
+}
