@@ -13,12 +13,12 @@ const OuterBox = styled.header`
     padding: 0 15px;
     * {
         color: #fff;
-        font-size: ${props => props.fontSize ? fontSize[props.fontSize] : '1rem' };
+        font-size: ${props => props.fontsize ? fontSizes[props.fontsize] : '1rem'};
     }
     .btns {
         a {
             border: 1px solid #fff;
-            border-radius: 5px;
+            border-radius: 5px; 
             padding: 5px 10px;
             transition: all 0.5s;
         }
@@ -30,6 +30,7 @@ const OuterBox = styled.header`
             color: #000;
         }
     }
+    
 `;
 
 const Header = () => {
