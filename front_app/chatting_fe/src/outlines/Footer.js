@@ -11,12 +11,12 @@ const OuterBox = styled.footer`
     text-align: center;
     color: #000;
     line-height: 45px;
-    font-size: ${props => props.fontsize ? fontSizes[props.fontsize] : '1rem' }
+    font-size: ${props => props.fontSize ? fontSizes[props.fontSize] : '1rem' }
 `;
 
 const Footer = () => {
     return (
-        <OuterBox fontsize="medium">
+        <OuterBox fontSize="medium">
             Chatting Service
         </OuterBox>
     )
