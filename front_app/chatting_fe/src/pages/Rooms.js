@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 function factorial(num) {
     let total = 1;
@@ -10,12 +10,17 @@ function factorial(num) {
 }
 
 const Rooms = () => {
-    
+    const [num, setNum] = useState(0);
+
+    const handleChange = (e) => {
+        setNum(e.target.value);
+    };
+
+    const result = useMemo(() => factorial(num), [num]);
 
     return (
         <>
-            <h1>11</h1>
-            
+            <input type="number" onChange={handleChange} /> = {result}            
         </>
     );
 };
