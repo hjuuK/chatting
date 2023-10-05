@@ -3,7 +3,7 @@ import fontSizes from '../styles/fontSizes';
 
 const OuterBox = styled.footer`
     background: #d5d5d5;
-    heigth: 45px;
+    height: 45px;
     position: fixed;
     width: 100%;
     left: 0;
@@ -11,7 +11,7 @@ const OuterBox = styled.footer`
     text-align: center;
     color: #000;
     line-height: 45px;
-    font-size: ${props => props.fontSize ? fontSizes[props.fontSize] : '1rem' }
+    font-size: ${props => props.fontSize ? fontSizes[props.fontSize] : '1rem'}
 `;
 
 const Footer = () => {
