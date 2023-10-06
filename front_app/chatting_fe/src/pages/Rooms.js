@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react";
+import styled from 'styled-components';
 import { getRooms } from "../api/chatting";
 import ErrorMessage from '../components/commons/ErrorMessage';
+
+const RoomBox = styled.li`
+    box-shadow: 2px 2px 5px #212121;
+    padding: 10px 20px;
+    border-radius: 5px;
+`;
 
 const Rooms = () => {
     const [rooms, setRooms] = useState([]);
     const [message, setMessage] = useState('');
-    const [loading, setLoading[ = useState(false);
-    ]]
+    const [loading, setLoading] = useState(true);
+
+
     useEffect(() => {
         getRooms()
-            .then((data) => {
-                console.log(ㅂ기뱅)
-                setRooms(data)
+            .then((res) => {
+                console.log(data);
+                setRooms(res.data);
+                setLoading(false);
             })
             .catch((err) => {
                 console.error(err);
-                setMessage("방 목록 조회 실패...");
-            })
+                setMessage("방목록 조회 실패...");
+                setLoading(false);
+            });
     }, []);
 
-    if (rooms.setLoading > 0)}
-
+    let lis = null;
+    if (rooms && rooms.length > 0) {
+        lis = rooms.map(r => (<RoomBox key={r.roomNo}>{r.roomNm}</RoomBox>));
+    }
+    
     return (
         <>
-            {message && <ErrorMessage>{message}</ErrorMessage>}
-            
-
-        </> 
+           {message && <ErrorMessage>{message}</ErrorMessage>}
+           { loading && rooms.length === 0 && <div>로딩중....</div> }
+           <ul>
+                {lis}
+            </ul>
+        </>
     );
 };
 
