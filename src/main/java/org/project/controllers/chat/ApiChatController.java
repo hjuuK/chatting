@@ -12,10 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,10 +20,12 @@ import java.util.List;
 @RequestMapping("/api/chat")
 @RequiredArgsConstructor
 public class ApiChatController {
+
     private final ChatRoomSaveService chatRoomSaveService;
     private final ChatRoomInfoService chatRoomInfoService;
     private final ChatMessageService messageService;
 
+    @GetMapping("/rooms")
     public ResponseEntity<JSONData<List<ChatRoom>>> rooms() {
         List<ChatRoom> rooms = chatRoomInfoService.getList();
         JSONData<List<ChatRoom>> data = new JSONData<>();
@@ -36,8 +35,18 @@ public class ApiChatController {
         return ResponseEntity.status(data.getStatus()).body(data);
     }
 
+    @GetMapping("/room/{roomNo}")
+    public JSONData<ChatRoom> roomInfo(@PathVariable Long roomNo) {
+        ChatRoom room = chatRoomInfoService.get(roomNo);
+        JSONData<ChatRoom> data = new JSONData<>();
+        data.setData(room);
+
+        return data;
+    }
+
     @PostMapping("/room")
     public ResponseEntity<JSONData<ChatRoom>> registerRoom(@Valid @RequestBody ChatRoomForm form, Errors errors) {
+
         if (errors.hasErrors()) {
             String message = errors.getAllErrors()
                     .stream().map(ObjectError::getDefaultMessage).findFirst().orElse(null);
@@ -58,12 +67,14 @@ public class ApiChatController {
 
     @PostMapping("/message")
     public ResponseEntity<JSONData<Object>> registerMessage(@Valid @RequestBody ChatMessageForm form, Errors errors) {
+
         if (errors.hasErrors()) {
             String message = errors.getAllErrors()
                     .stream().map(ObjectError::getDefaultMessage).findFirst().orElse(null);
 
             throw new BadRequestException(message);
         }
+
 
         messageService.save(form);
         HttpStatus status = HttpStatus.CREATED;
