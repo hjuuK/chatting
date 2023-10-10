@@ -9,7 +9,7 @@ let webSocket;
 const Room = () => {
     const inputEl = useRef();
     const buttonEl = useRef();
-    
+
     const initialInfo = {
         roomNo : '',
         roomNm : '',
@@ -60,8 +60,9 @@ const Room = () => {
    const handleChange = useCallback((e) => {
         const params = {roomNo, nickNm : roomInfo.nickNm, message: e.target.value};
         setChatData(params);
-        if (e.keyCode === 13) { // Enter 키 클릭시
-            buttonEl.current.click();
+        
+        if (e.keyCode === 13) { // 엔터키 클릭시 
+           buttonEl.current.click();
         }
    }, [roomInfo]);
    
@@ -70,9 +71,7 @@ const Room = () => {
         webSocket.send(JSON.stringify(chatData));
         inputEl.current.value = "";
         inputEl.current.focus();
-
         registerMessage(chatData); // 채팅 기록 서버 DB에 기록
-
    }, [chatData]);
 
    if (roomInfo && !roomInfo.nickNm) {
@@ -84,7 +83,7 @@ const Room = () => {
         <>  
             {roomInfo && <Title>{roomInfo.roomNm}({roomInfo.max ? `최대${roomInfo.max}명`: '무제한'})</Title>}
             <ul>{lis}</ul>
-            <input type="text" onChange={handleChange} ref={inputEl} />
+            <input type="text" onKeyUp={handleChange} ref={inputEl} />
             <button type="button" onClick={handleClick} ref={buttonEl}>전송</button>
         </>
     );
