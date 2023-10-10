@@ -121,7 +121,7 @@ const Room = () => {
             {roomInfo && <Title>{roomInfo.roomNm}({roomInfo.max ? `최대${roomInfo.max}명`: '무제한'})</Title>}
             <ChatBox>{lis}</ChatBox>
             <InputGrp>
-                <TextBox type="text" onKeyUp={handleChange} ref={inputEl} placeholder="메세지 입력..." />
+                <TextBox type="text" onKeyUp={handleChange} ref={inputEl} placeholder="메세지 입력..."/>
                 <button type="button" onClick={handleClick} ref={buttonEl}>
                     <FiSend />
                 </button>
